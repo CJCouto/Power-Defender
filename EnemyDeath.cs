@@ -9,7 +9,8 @@ public class EnemyDeath : MonoBehaviour {
 
 	void start() 
 	{
-		Health = 2;
+		Health = 1;
+		DelayDeath = 1;
 	}
 
 	//Reduces health on hit
