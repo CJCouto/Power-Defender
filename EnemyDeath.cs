@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyDeath : MonoBehaviour {
 
-	public int Health = 2;
+	public static int score;
+	public int Health;
 	public float DelayDeath;
+	public Text ScoreText;
+
 
 	void start() 
 	{
@@ -21,10 +25,17 @@ public class EnemyDeath : MonoBehaviour {
 			Health -= 1;
 		}
 
-		//Destroys enemy with an optional delay
+		//Destroys enemy & increments Score
 		if (Health <= 0) 
 		{
+			score += 1;
+			SetScoreText ();
 			Destroy (gameObject, DelayDeath);
 		}
 	}
+
+	void SetScoreText () {
+		ScoreText.text = "Score: " + score;
+	}
+
 }
