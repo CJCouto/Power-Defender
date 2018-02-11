@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour {
 
-	public int playerHealth = 1;
+	public int playerHealth = 3;
 	public float restartDelay = 2;
+	public Text gameoverText;
+	public static int score;
 
-	void start() 
+	void Start() 
 	{
-		playerHealth = 1;
+		playerHealth = 3;
+		EnemyDeath.score = 0;
 	}
-
+		
 	//Reduces health on hit
 	void OnTriggerEnter (Collider other){
 		
@@ -22,11 +26,16 @@ public class PlayerDeath : MonoBehaviour {
 
 		//Will load scene with a delay
 		if (playerHealth <= 0) {
+			SetGameOverText ();
 			Invoke ("restartLevel", restartDelay);
 		}
 	}
-		
+
+	void SetGameOverText () {
+		gameoverText.text = "Game Over";
+	}
+
 	void restartLevel () {
-		SceneManager.LoadScene ("scenename");
+		SceneManager.LoadScene (0);
 	}
 }
